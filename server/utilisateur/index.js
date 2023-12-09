@@ -6,14 +6,17 @@ const Utilisateur = require("./Utilisateur");
 const jwt = require("jsonwebtoken");
 const bcrypt = require("bcryptjs");
 const cors = require("cors");
+
 app.use(cors());
 app.use(express.json());
 
+require("dotenv").config();
+const username = process.env.MONGODB_USERNAME;
+const password = process.env.MONGODB_PASSWORD;
+
 mongoose.connect(
-	"mongodb+srv://rabiiababsa10:A842HX8IXrHj6ZcS@cluster0.lpidaoh.mongodb.net/microservice_project?retryWrites=true&w=majority"
+	`mongodb+srv://${username}:${password}@cluster0.lpidaoh.mongodb.net/microservice_project?retryWrites=true&w=majority`
 );
-
-
 
 app.post("/auth/register", async (req, res) => {
 	let { nom, email, password } = req.body;

@@ -4,8 +4,13 @@ const app = express();
 const cors = require("cors");
 
 const mongoose = require("mongoose");
+
+require("dotenv").config();
+const username = process.env.MONGODB_USERNAME;
+const password = process.env.MONGODB_PASSWORD;
+
 mongoose.connect(
-	"mongodb+srv://rabiiababsa10:A842HX8IXrHj6ZcS@cluster0.lpidaoh.mongodb.net/microservice_project?retryWrites=true&w=majority"
+	`mongodb+srv://${username}:${password}@cluster0.lpidaoh.mongodb.net/microservice_project?retryWrites=true&w=majority`
 );
 const Commande = require("./Commande");
 const isAuthenticated = require("./isAuthenticated");
