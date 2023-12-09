@@ -27,8 +27,7 @@ const ProductsAddPage = () => {
 			);
 
 			messageRef.current.innerText = response.data.message;
-			// Redirect to the products page after successful product addition
-			navigate("/products")
+			navigate("/products");
 		} catch (error) {
 			console.error("Error adding product:", error.message);
 			messageRef.current.innerText =

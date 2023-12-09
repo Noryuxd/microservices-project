@@ -65,7 +65,6 @@ const OrderProducts = () => {
 			navigate("/order-success");
 		} catch (error) {
 			console.error("Error placing order:", error.message);
-			// Handle error, show a message, etc.
 		}
 	};
 

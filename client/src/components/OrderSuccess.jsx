@@ -9,7 +9,7 @@ const OrderSuccess = () => {
 			<p>
 				Your order has been successfully placed. Thank you for shopping with us!
 			</p>
-			<Link to="/products">Continue Shopping</Link>
+			<Link to="/products">Products List</Link>
 			<Logout />
 		</div>
 	);
