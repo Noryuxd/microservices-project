@@ -36,26 +36,52 @@ const ProductsAddPage = () => {
 	};
 
 	return (
-		<div>
-			<h2>Add Product</h2>
-			<form onSubmit={handleAddProduct}>
-				<div>
-					<label>Name:</label>
-					<input type="text" required ref={productNameRef} />
+		<div className="container mx-auto p-8">
+			<h2 className="text-2xl font-bold mb-4">Add Product</h2>
+			<form onSubmit={handleAddProduct} className="mb-4">
+				<div className="mb-4">
+					<label className="block text-gray-700 text-sm font-bold mb-2">
+						Name:
+					</label>
+					<input
+						type="text"
+						required
+						ref={productNameRef}
+						className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+					/>
+				</div>
+				<div className="mb-4">
+					<label className="block text-gray-700 text-sm font-bold mb-2">
+						Description:
+					</label>
+					<input
+						type="text"
+						required
+						ref={productDescriptionRef}
+						className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+					/>
+				</div>
+				<div className="mb-4">
+					<label className="block text-gray-700 text-sm font-bold mb-2">
+						Price:
+					</label>
+					<input
+						type="text"
+						required
+						ref={productPriceRef}
+						className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+					/>
 				</div>
 				<div>
-					<label>Description:</label>
-					<input type="text" required ref={productDescriptionRef} />
-				</div>
-				<div>
-					<label>Price:</label>
-					<input type="text" required ref={productPriceRef} />
-				</div>
-				<div>
-					<button type="submit">Add Product</button>
+					<button
+						type="submit"
+						className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+					>
+						Add Product
+					</button>
 				</div>
 			</form>
-			<p ref={messageRef}></p>
+			<p ref={messageRef} className="text-red-500"></p>
 		</div>
 	);
 };

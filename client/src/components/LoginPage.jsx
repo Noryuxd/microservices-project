@@ -34,24 +34,52 @@ const LoginPage = () => {
 	};
 
 	return (
-		<form onSubmit={handleLogin}>
-			<h2>Login</h2>
-			<div>
-				<label>Email:</label>
-				<input ref={emailRef} required type="email" />
-			</div>
-			<div>
-				<label>Password:</label>
-				<input ref={passwordRef} required type="password" />
-			</div>
-			<div>
-				<button type="submit">Login</button>
-				<p>
-					Don't have an account? <Link to="/register">Register here</Link>.
-				</p>
-			</div>
-			{message && <p style={{ color: "red" }}>{message}</p>}
-		</form>
+		<div className="flex h-screen items-center justify-center">
+			<form
+				className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4"
+				onSubmit={handleLogin}
+			>
+				<h2 className="text-2xl mb-4">Login</h2>
+				<div className="mb-4">
+					<label className="block text-gray-700 text-sm font-bold mb-2">
+						Email:
+					</label>
+					<input
+						ref={emailRef}
+						className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+						required
+						type="email"
+					/>
+				</div>
+				<div className="mb-4">
+					<label className="block text-gray-700 text-sm font-bold mb-2">
+						Password:
+					</label>
+					<input
+						ref={passwordRef}
+						className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+						required
+						type="password"
+					/>
+				</div>
+				<div className="mb-6">
+					<button
+						className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+						type="submit"
+					>
+						Login
+					</button>
+					<p className="mt-2 text-sm">
+						Don't have an account?{" "}
+						<Link to="/register" className="text-blue-500">
+							Register here
+						</Link>
+						.
+					</p>
+				</div>
+				{message && <p style={{ color: "red" }}>{message}</p>}
+			</form>
+		</div>
 	);
 };
 

@@ -12,6 +12,7 @@ const password = process.env.MONGODB_PASSWORD;
 mongoose.connect(
 	`mongodb+srv://${username}:${password}@cluster0.lpidaoh.mongodb.net/microservice_project?retryWrites=true&w=majority`
 );
+
 const Commande = require("./Commande");
 const isAuthenticated = require("./isAuthenticated");
 
@@ -51,6 +52,7 @@ app.post("/commande/ajouter", isAuthenticated, async (req, res) => {
 			.save()
 			.then((commande) => res.status(201).json(commande))
 			.catch((error) => res.status(400).json({ error }));
+		console.log("Commande ajouté");
 	} catch (error) {
 		res.status(500).json({ error: error.message });
 	}

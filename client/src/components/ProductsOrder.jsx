@@ -35,9 +35,17 @@ const OrderProducts = () => {
 						: item
 				);
 			} else {
+				const selectedProduct = products.find(
+					(product) => product._id === productId
+				);
 				return [
 					...prevSelected,
-					{ id: productId, quantity: 1, price: productPrice },
+					{
+						id: productId,
+						quantity: 1,
+						price: productPrice,
+						name: selectedProduct.nom,
+					},
 				];
 			}
 		});
@@ -49,7 +57,6 @@ const OrderProducts = () => {
 		e.preventDefault();
 		try {
 			const authToken = localStorage.getItem("authToken");
-			console.log(authToken);
 			await axios.post(
 				"http://localhost:4001/commande/ajouter",
 				{
@@ -84,28 +91,29 @@ const OrderProducts = () => {
 	};
 
 	return (
-		<form onSubmit={handleOrder}>
+		<form onSubmit={handleOrder} className="container mx-auto p-8">
 			<div>
-				<h2>Order Products</h2>
-				<table>
+				<h2 className="text-2xl font-bold mb-4">Order Products</h2>
+				<table className="w-full mb-4">
 					<thead>
 						<tr>
-							<th>Name</th>
-							<th>Price</th>
-							<th>Action</th>
+							<th className="border px-4 py-2">Name</th>
+							<th className="border px-4 py-2">Price</th>
+							<th className="border px-4 py-2">Action</th>
 						</tr>
 					</thead>
 					<tbody>
 						{products.map((product) => (
 							<tr key={product._id}>
-								<td>{product.nom}</td>
-								<td>${product.prix}</td>
-								<td>
+								<td className="border px-4 py-2">{product.nom}</td>
+								<td className="border px-4 py-2">${product.prix}</td>
+								<td className="border px-4 py-2">
 									<button
 										type="button"
 										onClick={() =>
 											handleOrderButtonClick(product._id, product.prix)
 										}
+										className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-1 px-2 rounded focus:outline-none focus:shadow-outline"
 									>
 										Order
 									</button>
@@ -114,17 +122,18 @@ const OrderProducts = () => {
 						))}
 					</tbody>
 				</table>
-				<p>Total Price: ${totalPrice.toFixed(2)}</p>
+				<p className="mb-4">Total Price: ${totalPrice.toFixed(2)}</p>
 
-				<div>
-					<h3>Selected Products</h3>
+				<div className="mb-4">
+					<h3 className="text-lg font-bold">Selected Products</h3>
 					<ul>
 						{selectedProducts.map((product) => (
-							<li key={product.id}>
-								{product.quantity} x {product.id} - ${product.price}
+							<li key={product.id} className="mb-2">
+								{product.quantity} x {product.name} - ${product.price}
 								<button
 									type="button"
 									onClick={() => handleRemoveProduct(product.id, product.price)}
+									className="ml-2 bg-red-500 hover:bg-red-700 text-white font-bold py-1 px-2 rounded focus:outline-none focus:shadow-outline"
 								>
 									Remove
 								</button>
@@ -133,7 +142,13 @@ const OrderProducts = () => {
 					</ul>
 				</div>
 
-				<button type="submit" disabled={selectedProducts.length === 0}>
+				<button
+					type="submit"
+					disabled={selectedProducts.length === 0}
+					className={`bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded ${
+						selectedProducts.length === 0 ? "opacity-50 cursor-not-allowed" : ""
+					} focus:outline-none focus:shadow-outline`}
+				>
 					Place Order
 				</button>
 			</div>

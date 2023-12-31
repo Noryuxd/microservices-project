@@ -20,24 +20,36 @@ const ProductsPage = () => {
 	}, []);
 
 	return (
-		<div>
-			<h2>Products</h2>
-			<Link to="/products/add">Add Product</Link>
-			<Link to="/products/order">Order products</Link>
-			<table>
+		<div className="container mx-auto p-8">
+			<h2 className="text-2xl font-bold mb-4">Products</h2>
+			<div className="mb-4">
+				<Link
+					to="/products/add"
+					className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+				>
+					Add Product
+				</Link>
+				<Link
+					to="/products/order"
+					className="ml-4 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+				>
+					Order products
+				</Link>
+			</div>
+			<table className="table-auto w-full">
 				<thead>
 					<tr>
-						<th>Name</th>
-						<th>Description</th>
-						<th>Price</th>
+						<th className="border px-4 py-2">Name</th>
+						<th className="border px-4 py-2">Description</th>
+						<th className="border px-4 py-2">Price</th>
 					</tr>
 				</thead>
 				<tbody>
 					{products.map((product) => (
 						<tr key={product._id}>
-							<td>{product.nom}</td>
-							<td>{product.description}</td>
-							<td>{product.prix}</td>
+							<td className="border px-4 py-2">{product.nom}</td>
+							<td className="border px-4 py-2">{product.description}</td>
+							<td className="border px-4 py-2">{product.prix}</td>
 						</tr>
 					))}
 				</tbody>
