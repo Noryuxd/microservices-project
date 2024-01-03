@@ -17,9 +17,6 @@ const Produit = require("./Produit");
 app.use(express.json());
 app.use(cors());
 
-app.get("/", (req, res) => {
-	res.send("Hello");
-});
 
 app.post("/produits/ajouter", async (req, res) => {
 	const { nom, description, prix } = req.body;
